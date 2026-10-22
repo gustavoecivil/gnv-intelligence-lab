@@ -7,6 +7,7 @@
 Site estático, autocontido (HTML/CSS/JavaScript), com:
 
 - dados públicos do Galo na Veia acompanhados de fontes e datas;
+- **Radar de Voz do Torcedor** com 13 avaliações públicas resumidas (App Store e Google Play), categorização multirrótulo, gráficos interativos, filtros de jornada, assunto, sentimento e prioridade; classificação humana exploratória sem acesso à API Jev;
 - CRM **100% sintético** (2.400 perfis) para exercícios de segmentação;
 - funil de compra e laboratório de campanhas, ambos hipotéticos;
 - simulador interativo de **agentes inteligentes omnicanal**: WhatsApp, Instagram Direct, Messenger, site/app e ligações de voz, com atendimento, compra assistida e transferência humana; **sem IA generativa real, integrações ou transações**;
