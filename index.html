@@ -51,6 +51,31 @@
 .omni-channel{border:1px solid #414956;background:#202632;color:#cbd4da;padding:11px 14px;border-radius:10px;font-size:12px;font-weight:720}
 .omni-channel:hover{border-color:#b79b61;color:white}
 .omni-channel.active,.omni-channel[aria-pressed="true"]{border-color:var(--gold);background:#e9b95c19;color:#ffe1a5}
+
+/* Radar de avaliações públicas: barras vetoriais e filtros sem bibliotecas */
+.review-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}
+.review-stat{background:linear-gradient(135deg,#1b222a,#111820);border:1px solid #38414b;border-radius:12px;padding:15px}
+.review-stat strong{display:block;font-size:24px;font-variant-numeric:tabular-nums;color:#f5d99c}
+.review-stat small{display:block;font-size:10px;color:#b0b6c1;margin-top:7px}
+.review-bars{display:grid;gap:9px}
+.review-bar{display:grid;grid-template-columns:minmax(105px,170px) minmax(70px,1fr) 32px;align-items:center;gap:11px;border:1px solid transparent;background:transparent;text-align:left;color:#e7e9ed;padding:6px 4px;border-radius:7px;width:100%;font-size:11px}
+.review-bar:hover,.review-bar:focus-visible{background:#252b33;border-color:#505766}
+.review-track{height:15px;border-radius:5px;background:#303845;overflow:hidden}
+.review-bar-fill{height:100%;display:block;min-width:2px;border-radius:5px;background:linear-gradient(90deg,#b48940,#e9b95c)}
+.review-bar-fill.neg{background:#e9947e}.review-bar-fill.pos{background:#6bce9d}.review-bar-fill.mix{background:#97b3e5}.review-bar-fill.neutral{background:#9299a5}
+.review-bar b{text-align:right;font-size:12px}
+.review-notice{border-left:3px solid var(--gold);padding:11px 14px;background:#d39b4415;font-size:11px;line-height:1.6;color:#d6d0bd;margin:13px 0}
+.review-table td{font-size:11px;line-height:1.6;vertical-align:top}
+.review-pill{display:inline-block;padding:4px 8px;border-radius:12px;font-size:10px;margin:2px;border:1px solid #606a7770;color:#c7d3dc;background:#2a323e}
+.review-pill.Negativo{color:#f8b0a8;border-color:#d1727470;background:#59362f}
+.review-pill.Positivo{color:#90ecc3;border-color:#3e956c80;background:#1e4436}
+.review-pill.Misto{color:#b9ccff;border-color:#7293bf70;background:#293c5b}
+.review-pill.Neutro{color:#d7d9dd;border-color:#7c859070;background:#383c42}
+.review-labels{max-width:300px}
+.review-metadata{color:#9ea8b3;font-size:10px}
+.review-empty{padding:20px;font-size:12px;color:#aaa}
+@media(max-width:950px){.review-summary{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.review-summary{grid-template-columns:repeat(2,1fr)}.review-bar{grid-template-columns:minmax(110px,160px) 1fr 20px;gap:5px;font-size:10px}}
 @media(max-width:1080px){.layout{grid-template-columns:205px minmax(0,1fr)}.main{padding:0 24px 30px}.cards{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.intro{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:730px){.layout{display:block}.rail{height:auto;position:sticky;top:0;padding:8px 12px;gap:7px;z-index:20;display:flex}.rail .brand{padding:3px}.brand-mark{width:30px;height:31px;font-size:13px}.brand strong{font-size:12px}.brand small{font-size:7px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 12px;font-size:11px}.rail-label,.rail-foot{display:none}.main{padding:0 15px 30px}.top{top:92px;min-height:55px}.intro{padding:25px 0}.intro h1{font-size:35px}.cards,.grid3{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.funnel-row{grid-template-columns:105px 1fr 65px;gap:6px}.progress-row{grid-template-columns:110px 1fr 60px}.simresults{grid-template-columns:1fr 1fr}.section-title{flex-wrap:wrap}.status{font-size:9px}}
 @media(max-width:450px){.cards,.grid3,.simresults{grid-template-columns:1fr}.top-kicker{font-size:9px}.top{top:92px}.pane{padding:15px}.intro-aside{display:none}}
@@ -65,10 +90,11 @@
     <button class="active" data-page="overview"><span class="ico">01</span> Visão executiva</button>
     <button data-page="ecosystem"><span class="ico">02</span> Ecossistema & jornada</button>
     <button data-page="whatsapp"><span class="ico">03</span> Agentes & vendas omnicanal</button>
-    <button data-page="crm"><span class="ico">04</span> CRM simulado</button>
-    <button data-page="campaign"><span class="ico">05</span> Laboratório de campanhas</button>
-    <button data-page="rules"><span class="ico">06</span> Regulamentos GNV</button>
-    <button data-page="sources"><span class="ico">07</span> Fontes & método</button>
+    <button data-page="reviews"><span class="ico">04</span> Voz do torcedor</button>
+    <button data-page="crm"><span class="ico">05</span> CRM simulado</button>
+    <button data-page="campaign"><span class="ico">06</span> Laboratório de campanhas</button>
+    <button data-page="rules"><span class="ico">07</span> Regulamentos GNV</button>
+    <button data-page="sources"><span class="ico">08</span> Fontes & método</button>
   </nav></div>
   <div class="rail-foot"><b>ESTUDO INDEPENDENTE · NÃO OFICIAL</b><div>Desenvolvido para demonstrar análise de CRM com dados públicos e sintéticos. Não é um produto oficial, afiliado ou contratado pelo Galo.</div></div>
 </aside>
@@ -152,6 +178,56 @@
    <div class="step"><small>03 · SISTEMAS</small><b>GaloID + GNV + bilheteria</b><p>Inventário em tempo real, regras de plano e jogo, pagamentos e emissão pela infraestrutura oficial.</p></div>
    <div class="step"><small>04 · SUPERVISÃO</small><b>CRM + agente humano</b><p>Auditoria, controle de exceções, transferências com contexto e aprendizado a partir dos casos.</p></div></div>
   <p class="smallmuted" style="margin-top:14px"><b>Limites importantes:</b> no Instagram Direct, a API de mensagens exige conta profissional e que a conversa seja iniciada pelo usuário; isso não equivale a uma API de venda de ingressos dentro do Direct. O WhatsApp oferece Flows, mas pagamento nativo no Brasil ou integração com bilheteria não estão confirmados neste estudo. O regulamento do GNV não garante descontos para vendas fora da plataforma oficial. A biometria facial e o meio autorizado de acesso à Arena continuam válidos.</p>
+ </article>
+</section>
+
+
+<section id="reviews" class="section">
+ <div class="section-title"><div><h2>Radar de Voz do Torcedor</h2><p>Análise multirrótulo de avaliações públicas do Super App do Galo. O sentimento é apenas uma dimensão: também classificamos assunto, etapa da jornada, prioridade de investigação e qualidade da evidência.</p></div><span class="mini-tag sim">Amostra exploratória</span></div>
+ <div class="warn"><b>O que estamos medindo:</b> 13 comentários textuais distintos visíveis na App Store brasileira e no Google Play, consultados em 21/10/2026. Avaliações repetidas na mesma página foram descartadas. Os textos foram sintetizados, não reproduzidos integralmente; a classificação é <b>manual preliminar, não feita pelo Jev</b>. Os resultados não representam os milhares de usuários ou classificações por estrelas das lojas.</div>
+ <div id="review-stats" class="review-summary" aria-label="Indicadores da amostra de avaliações"></div>
+ <div class="pane" style="margin-bottom:15px">
+  <div class="pane-head"><div><h3>Explore e filtre os relatos</h3><div class="sub">Escolha um canal, sentimento, prioridade ou tema. Clique nas barras para investigar o grupo correspondente.</div></div><button id="review-clear" class="btn secondary" type="button">Limpar filtros</button></div>
+  <div class="filters">
+    <label class="field">Loja<select id="review-source"><option value="Todos">App Store + Google Play</option><option>App Store</option><option>Google Play</option></select></label>
+    <label class="field">Sentimento<select id="review-sentiment"><option value="Todos">Todos os sentimentos</option><option>Negativo</option><option>Positivo</option><option>Misto</option><option>Neutro</option></select></label>
+    <label class="field">Prioridade<select id="review-priority"><option value="Todos">Todas as prioridades</option><option>Alta</option><option>Média</option><option>Baixa</option></select></label>
+    <label class="field">Assunto<select id="review-topic"><option value="Todos">Todos os assuntos</option></select></label>
+    <label class="field">Pesquisar<input id="review-search" type="search" placeholder="Tema ou resumo..."/></label>
+  </div>
+  <p id="review-filter-count" class="smallmuted" aria-live="polite"></p>
+ </div>
+ <div class="grid2 equal">
+  <article class="pane"><div class="pane-head"><div><h3>Sentimento do texto</h3><div class="sub">Positivo, negativo, misto e neutro/sem informação suficiente.</div></div><span class="mini-tag sim">Interpretação</span></div><div id="review-sentiment-chart" class="review-bars"></div><p class="smallmuted">Uma avaliação mista pode elogiar um recurso e criticar outro. A nota em estrelas não substitui a leitura do texto.</p></article>
+  <article class="pane"><div class="pane-head"><div><h3>Sobre o que o torcedor comenta?</h3><div class="sub">Assuntos não exclusivos, identificados na mesma avaliação.</div></div><span class="mini-tag sim">Multirrótulo</span></div><div id="review-topic-chart" class="review-bars"></div><p class="smallmuted">A soma das citações de assuntos pode ultrapassar o número de comentários; isto não é erro de contagem.</p></article>
+ </div>
+ <div class="grid2 equal">
+  <article class="pane"><div class="pane-head"><h3>Etapa da jornada</h3><span class="mini-tag sim">Diagnóstico</span></div><div id="review-stage-chart" class="review-bars"></div></article>
+  <article class="pane"><div class="pane-head"><h3>Da escuta à melhoria</h3><span class="mini-tag sim">Hipóteses</span></div>
+    <div class="statlist" style="margin-top:12px">
+     <div class="statline"><span>Login e identidade</span><b>Erros e recuperação</b></div>
+     <div class="statline"><span>Biometria facial</span><b>Cadastro e validação</b></div>
+     <div class="statline"><span>Compra e integração</span><b>Troca de ambiente</b></div>
+     <div class="statline"><span>Operação da Arena</span><b>Retirada e acesso</b></div>
+     <div class="statline"><span>Relacionamento</span><b>Suporte e benefícios</b></div>
+    </div>
+    <div class="review-notice"><b>Como agir?</b> Ligar relatos às etapas reais do funil, confirmar com telemetria e atendimento, priorizar impacto e validar as correções com testes controlados. Não concluir que um agente de IA resolverá sozinho qualquer falha.</div>
+   </article>
+ </div>
+ <article class="pane" style="margin-top:16px">
+  <div class="pane-head"><div><h3>Evidências e classificações auditáveis</h3><div class="sub">Resumo fiel do assunto, sem expor nomes de avaliadores; link para a origem e hipótese de melhoria.</div></div><a href="dados/avaliacoes_superapp_amostra_2026-10-21.csv" class="btn secondary" download>↓ CSV da amostra</a></div>
+  <div class="table-wrap"><table class="review-table" style="min-width:950px"><thead><tr><th>Fonte / data</th><th>Sentimento</th><th>Assuntos</th><th>Etapa / prioridade</th><th>O que foi relatado e investigar</th><th>Origem</th></tr></thead><tbody id="review-table"></tbody></table></div>
+  <p id="review-empty" class="review-empty" hidden>Nenhum comentário corresponde aos filtros selecionados.</p>
+ </article>
+ <article class="pane" style="margin-top:16px"><div class="pane-head"><h3>Governança da escuta</h3><span class="mini-tag qual">Metodologia</span></div>
+  <div class="steps">
+   <div class="step"><small>1 · CAPTURA</small><b>Fonte e data</b><p>Guardar URL, loja, data exibida e texto disponível, respeitando condições de uso e direitos dos autores.</p></div>
+   <div class="step"><small>2 · CLASSIFICAÇÃO</small><b>Vários rótulos</b><p>Sentimento, assuntos, jornada, prioridade e confiança. Em comentário ambíguo, registrar baixa confiança.</p></div>
+   <div class="step"><small>3 · REVISÃO</small><b>Humanos validam</b><p>Auditar amostra, corrigir erros, separar problemas relatados de falhas tecnicamente confirmadas.</p></div>
+   <div class="step"><small>4 · MEDIÇÃO</small><b>Produto e CRM</b><p>Comparar categorias com métricas reais, suporte e experimentos antes de propor mudanças.</p></div>
+  </div>
+  <p class="smallmuted" style="margin-top:14px">A integração com um classificador externo, inclusive Jev, <b>não está ativa</b>. Caso seja conectada futuramente, a chave de API e os originais devem ficar em um backend protegido, nunca neste site público. A amostra não é representativa e não deve ser usada como taxa real de insatisfação do aplicativo.</p>
+  <div class="buttonrow" style="margin-top:15px"><a href="https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&amp;see-all=reviews" target="_blank" rel="noopener noreferrer" class="btn secondary">App Store ↗</a><a href="https://play.google.com/store/apps/details?hl=pt_BR&amp;id=br.com.atletico.app" target="_blank" rel="noopener noreferrer" class="btn secondary">Google Play ↗</a></div>
  </article>
 </section>
 
@@ -326,6 +402,70 @@ function waChoice(key,label){
 document.querySelectorAll('[data-channel]').forEach(b=>b.addEventListener('click',()=>omniSelect(b.dataset.channel)));
 document.getElementById('wa-reset').addEventListener('click',waStart);
 omniSelect('whatsapp');
+
+/* Radar de voz do torcedor: amostra pública de comentários, classificada manualmente. */
+const reviewData=[{"id":"APL-01","source":"App Store","date":"28/05/2023","sentiment":"Positivo","topics":["Identidade / torcida"],"stage":"Percepção da marca","priority":"Baixa","confidence":"Baixa","summary":"Elogio à identidade do clube, sem avaliação objetiva de funcionalidades.","insight":"Separar entusiasmo pela marca da satisfação comprovada com o aplicativo.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-02","source":"App Store","date":"31 mar. (ano não exibido)","sentiment":"Neutro","topics":["Sem detalhe funcional"],"stage":"Geral","priority":"Baixa","confidence":"Baixa","summary":"Avaliação muito curta, sem explicar aspecto do uso.","insight":"Marcar como pouco informativa para diagnóstico do produto.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-03","source":"App Store","date":"03/08/2025","sentiment":"Negativo","topics":["Login / GaloID","Suporte"],"stage":"Autenticação","priority":"Alta","confidence":"Alta","summary":"Relata repetidas tentativas frustradas de login e ausência de resposta do suporte.","insight":"Investigar taxa de erro no login e qualidade do encaminhamento ao suporte.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-04","source":"App Store","date":"31 jul. (ano não exibido)","sentiment":"Negativo","topics":["Login / GaloID","Recuperação de senha"],"stage":"Autenticação","priority":"Alta","confidence":"Alta","summary":"Relata falta do e-mail de recuperação de senha e dificuldade com entrada via Inter.","insight":"Auditar entrega do código e integração com identidade externa.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-05","source":"App Store","date":"28 jul. (ano não exibido)","sentiment":"Negativo","topics":["Login / GaloID","Biometria facial","Compra / checkout"],"stage":"Compra de ingresso","priority":"Alta","confidence":"Alta","summary":"Após login e biometria, relata bloqueio ao tentar comprar em dois sistemas operacionais.","insight":"Investigar falha nas condições de elegibilidade e mensagens de janela de compra.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-06","source":"App Store","date":"27 mai. (ano não exibido)","sentiment":"Negativo","topics":["Login / GaloID","Mensagens de erro"],"stage":"Autenticação","priority":"Alta","confidence":"Alta","summary":"Relata erro genérico ao entrar, sem indicação do motivo nem como corrigir.","insight":"Revisar observabilidade, mensagens acionáveis e opções de recuperação.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-07","source":"App Store","date":"16 mai. (ano não exibido)","sentiment":"Negativo","topics":["Login / GaloID"],"stage":"Autenticação","priority":"Alta","confidence":"Alta","summary":"Relata que as credenciais funcionam no GNV, mas a autenticação falha no Super App.","insight":"Comparar autenticação dos sistemas e identificar divergência de sessão.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-08","source":"App Store","date":"31 mar. (ano não exibido)","sentiment":"Positivo","topics":["Experiência do app"],"stage":"Percepção geral","priority":"Baixa","confidence":"Média","summary":"Elogia o trabalho da equipe de tecnologia responsável pelo aplicativo.","insight":"Identificar atributos específicos que geram aprovação em estudo qualitativo.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-09","source":"App Store","date":"31 mar. (ano não exibido)","sentiment":"Positivo","topics":["Identidade / torcida"],"stage":"Percepção da marca","priority":"Baixa","confidence":"Baixa","summary":"Mensagem de entusiasmo pelo clube, sem detalhar o uso do aplicativo.","insight":"Não confundir paixão pelo Galo com avaliação funcional.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"APL-10","source":"App Store","date":"26 mar. (ano não exibido)","sentiment":"Misto","topics":["Acesso à Arena","Conteúdo / notícias","Moedas / recompensas","Consumo na Arena"],"stage":"Experiência multietapas","priority":"Média","confidence":"Alta","summary":"Elogia entrada no estádio, notícias e ideia de comprar alimentos; critica redução das moedas e demora para retirada.","insight":"Dividir elogios e pontos de atrito; comparar experiência digital e operação física.","url":"https://apps.apple.com/br/app/super-app-do-galo/id1671629815?platform=iphone&see-all=reviews"},{"id":"GPL-01","source":"Google Play","date":"26/01/2024","sentiment":"Misto","topics":["Compra / checkout","Desempenho / navegação"],"stage":"Compra e navegação","priority":"Média","confidence":"Alta","summary":"Elogia fluidez e navegação, mas observa que compras passam por páginas externas e sugere integração mais direta.","insight":"Medir saída para terceiros, retorno da sessão e conversão entre ambientes.","url":"https://play.google.com/store/apps/details?hl=pt_BR&id=br.com.atletico.app"},{"id":"GPL-02","source":"Google Play","date":"29/08/2026","sentiment":"Negativo","topics":["Biometria facial","Compra / checkout"],"stage":"Biometria e ingresso","priority":"Alta","confidence":"Alta","summary":"Relata muitas tentativas de reconhecimento facial e necessidade de buscar atendimento presencial para comprar.","insight":"Testar acessibilidade, falhas de biometria e caminhos alternativos de suporte.","url":"https://play.google.com/store/apps/details?hl=pt_BR&id=br.com.atletico.app"},{"id":"GPL-03","source":"Google Play","date":"21/07/2026","sentiment":"Negativo","topics":["Biometria facial"],"stage":"Biometria","priority":"Alta","confidence":"Alta","summary":"Conseguiu se cadastrar, mas relata que o reconhecimento facial não foi concluído apesar de seguir instruções.","insight":"Investigar taxa de conclusão, orientação e suporte para registro facial.","url":"https://play.google.com/store/apps/details?hl=pt_BR&id=br.com.atletico.app"}];
+const reviewColors={Negativo:'neg',Positivo:'pos',Misto:'mix',Neutro:'neutral'};
+const reviewOrder=['Negativo','Positivo','Misto','Neutro'];
+const reviewTopics=[...new Set(reviewData.flatMap(r=>r.topics))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+const rv=id=>document.getElementById(id);
+reviewTopics.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;rv('review-topic').appendChild(o);});
+function reviewsFiltered(){
+ const src=rv('review-source').value,sen=rv('review-sentiment').value,pri=rv('review-priority').value,topic=rv('review-topic').value,q=rv('review-search').value.trim().toLocaleLowerCase('pt-BR');
+ return reviewData.filter(r=>(src==='Todos'||r.source===src)&&(sen==='Todos'||r.sentiment===sen)&&(pri==='Todos'||r.priority===pri)&&(topic==='Todos'||r.topics.includes(topic))&&(!q||[r.summary,r.insight,r.stage,r.id,...r.topics].join(' ').toLocaleLowerCase('pt-BR').includes(q)));
+}
+function drawReviewBars(target,rows,onClick,colorMode='topic'){
+ const root=rv(target);root.replaceChildren();let max=Math.max(1,...rows.map(r=>r[1]));
+ if(!rows.length){root.textContent='Nenhum dado para esses filtros.';return;}
+ for(const [label,value] of rows){
+  const b=document.createElement('button');b.type='button';b.className='review-bar';b.title='Filtrar por '+label;
+  const name=document.createElement('span');name.textContent=label;
+  const track=document.createElement('span');track.className='review-track';
+  const fill=document.createElement('span');fill.className='review-bar-fill '+(colorMode==='sent'?reviewColors[label]||'':'');
+  fill.style.width=Math.max(0,value/max*100)+'%';track.appendChild(fill);
+  const count=document.createElement('b');count.textContent=String(value);
+  b.append(name,track,count);b.addEventListener('click',()=>onClick(label));root.appendChild(b);
+ }
+}
+function sentimentTag(sentiment){
+ const v=document.createElement('span');v.className='review-pill '+sentiment;v.textContent=sentiment;return v;
+}
+function reviewCell(tr,val,cls=''){
+ const td=document.createElement('td');if(cls)td.className=cls;td.textContent=val;tr.appendChild(td);return td;
+}
+function renderReviewLab(){
+ const data=reviewsFiltered();
+ rv('review-filter-count').textContent=data.length+' de '+reviewData.length+' comentários nesta seleção · indicadores recalculados pelos filtros.';
+ const critical=data.filter(r=>r.priority==='Alta').length;
+ const mixed=data.filter(r=>r.sentiment==='Misto').length;
+ const uniqueThemes=new Set(data.flatMap(r=>r.topics)).size;
+ const stats=[['Relatos filtrados',data.length],['Com prioridade alta',critical],['Misturam elogio e crítica',mixed],['Assuntos identificados',uniqueThemes]];
+ const statBox=rv('review-stats');statBox.replaceChildren();
+ for(const [label,val] of stats){const card=document.createElement('div');card.className='review-stat';const v=document.createElement('strong');v.textContent=val;const t=document.createElement('small');t.textContent=label;card.append(v,t);statBox.appendChild(card);}
+ drawReviewBars('review-sentiment-chart',reviewOrder.map(k=>[k,data.filter(r=>r.sentiment===k).length]),label=>{rv('review-sentiment').value=rv('review-sentiment').value===label?'Todos':label;renderReviewLab();},'sent');
+ const byTopic=reviewTopics.map(t=>[t,data.filter(r=>r.topics.includes(t)).length]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
+ drawReviewBars('review-topic-chart',byTopic,label=>{rv('review-topic').value=rv('review-topic').value===label?'Todos':label;renderReviewLab();});
+ const stages=[...new Set(data.map(r=>r.stage))].map(t=>[t,data.filter(r=>r.stage===t).length]).sort((a,b)=>b[1]-a[1]);
+ drawReviewBars('review-stage-chart',stages,label=>{rv('review-search').value=rv('review-search').value===label?'':label;renderReviewLab();});
+ const tbody=rv('review-table');tbody.replaceChildren();
+ for(const r of data){
+  const tr=document.createElement('tr');
+  reviewCell(tr,r.source+' · '+r.date);
+  const sent=document.createElement('td');sent.appendChild(sentimentTag(r.sentiment));tr.appendChild(sent);
+  const tags=document.createElement('td');tags.className='review-labels';for(const t of r.topics){const x=document.createElement('span');x.className='review-pill';x.textContent=t;tags.appendChild(x);}tr.appendChild(tags);
+  reviewCell(tr,r.stage+' · '+r.priority+'\nConfiança: '+r.confidence);
+  const explain=document.createElement('td');const txt=document.createElement('div');txt.textContent=r.summary;
+  const insight=document.createElement('div');insight.className='review-metadata';insight.textContent='Investigar: '+r.insight;explain.append(txt,insight);tr.appendChild(explain);
+  const source=document.createElement('td');const a=document.createElement('a');a.href=r.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Ver origem ↗';source.appendChild(a);tr.appendChild(source);
+  tbody.appendChild(tr);
+ }
+ rv('review-empty').hidden=data.length!==0;
+}
+['review-source','review-sentiment','review-priority','review-topic'].forEach(id=>rv(id).addEventListener('change',renderReviewLab));
+rv('review-search').addEventListener('input',renderReviewLab);
+rv('review-clear').addEventListener('click',()=>{['review-source','review-sentiment','review-priority','review-topic'].forEach(id=>rv(id).value='Todos');rv('review-search').value='';renderReviewLab();});
+renderReviewLab();
+
 renderFunnel();renderFriction();fillOptions();renderSegments();renderTable();renderCampaign();
 </script>
 </body></html>
