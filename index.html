@@ -45,6 +45,12 @@
 .rules-card small{font-size:10px;color:#9198a3;line-height:1.5}
 @media(max-width:1100px){.rules-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.rules-grid{grid-template-columns:1fr}}
+
+/* Canais conceituais: seleção altera o roteiro visível e os avisos; não há conexão externa */
+.omni-channels{display:flex;flex-wrap:wrap;gap:9px}
+.omni-channel{border:1px solid #414956;background:#202632;color:#cbd4da;padding:11px 14px;border-radius:10px;font-size:12px;font-weight:720}
+.omni-channel:hover{border-color:#b79b61;color:white}
+.omni-channel.active,.omni-channel[aria-pressed="true"]{border-color:var(--gold);background:#e9b95c19;color:#ffe1a5}
 @media(max-width:1080px){.layout{grid-template-columns:205px minmax(0,1fr)}.main{padding:0 24px 30px}.cards{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.intro{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:730px){.layout{display:block}.rail{height:auto;position:sticky;top:0;padding:8px 12px;gap:7px;z-index:20;display:flex}.rail .brand{padding:3px}.brand-mark{width:30px;height:31px;font-size:13px}.brand strong{font-size:12px}.brand small{font-size:7px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px 12px;font-size:11px}.rail-label,.rail-foot{display:none}.main{padding:0 15px 30px}.top{top:92px;min-height:55px}.intro{padding:25px 0}.intro h1{font-size:35px}.cards,.grid3{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.funnel-row{grid-template-columns:105px 1fr 65px;gap:6px}.progress-row{grid-template-columns:110px 1fr 60px}.simresults{grid-template-columns:1fr 1fr}.section-title{flex-wrap:wrap}.status{font-size:9px}}
 @media(max-width:450px){.cards,.grid3,.simresults{grid-template-columns:1fr}.top-kicker{font-size:9px}.top{top:92px}.pane{padding:15px}.intro-aside{display:none}}
@@ -58,7 +64,7 @@
   <div><div class="rail-label">Explorar o estudo</div><nav class="nav" aria-label="Navegação principal">
     <button class="active" data-page="overview"><span class="ico">01</span> Visão executiva</button>
     <button data-page="ecosystem"><span class="ico">02</span> Ecossistema & jornada</button>
-    <button data-page="whatsapp"><span class="ico">03</span> WhatsApp & ingressos</button>
+    <button data-page="whatsapp"><span class="ico">03</span> Agentes & vendas omnicanal</button>
     <button data-page="crm"><span class="ico">04</span> CRM simulado</button>
     <button data-page="campaign"><span class="ico">05</span> Laboratório de campanhas</button>
     <button data-page="rules"><span class="ico">06</span> Regulamentos GNV</button>
@@ -105,36 +111,48 @@
 
 
 <section id="whatsapp" class="section">
-<div class="section-title"><div><h2>WhatsApp: do atendimento à compra</h2><p>Hipótese de evolução do chatbot existente: o torcedor poderia encontrar e adquirir ingressos sem precisar navegar por outro aplicativo.</p></div><span class="mini-tag sim">Proposta experimental</span></div>
-<div class="warn"><b>Ponto de partida:</b> o Galo já tem chatbot no WhatsApp. Segundo a experiência relatada pelo sócio, ainda é preciso usar o aplicativo para comprar ingresso. A experiência proposta aqui é <b>hipotética</b> e dependeria de autorização do clube, integração oficial de bilheteria, identidade e pagamentos. Nada é vendido ou reservado nesta página.</div>
-<div class="wa-stages"><div><strong>01</strong>Intenção de compra</div><div><strong>02</strong>Partida e setor</div><div><strong>03</strong>Plano e vantagens</div><div><strong>04</strong>Finalização segura</div></div>
-<div class="wa-layout">
- <article class="pane"><div class="pane-head"><div><h3>Teste o agente demonstrativo</h3><div class="sub">Selecione as respostas para percorrer a jornada; o roteiro é local e não conversa com o WhatsApp real.</div></div><span class="mini-tag sim">100% fictício</span></div>
-  <div class="wa-device">
-   <div class="wa-header"><div class="wa-icon">GV</div><div><strong>Agente GNV — demonstração</strong><small>Simulador não oficial · nenhuma mensagem enviada</small></div></div>
-   <div id="wa-chat" class="wa-chat" role="log" aria-live="polite" aria-label="Histórico da simulação"></div>
-   <div id="wa-options" class="wa-options" aria-label="Opções de resposta"></div>
+ <div class="section-title"><div><h2>Agentes inteligentes: atendimento e venda omnicanal</h2><p>O mesmo agente, múltiplas portas de entrada. A jornada começa no canal escolhido pelo torcedor e utiliza sistemas oficiais para identidade, benefícios, inventário, pagamento e emissão.</p></div><span class="mini-tag sim">Arquitetura proposta</span></div>
+ <div class="warn"><b>Problema e hipótese:</b> o GNV já divulga atendimento por WhatsApp, telefone e presencial. A oportunidade é ir além de respostas pré-definidas e integrar um agente de IA à jornada de compra e suporte no <b>WhatsApp, Instagram Direct, Messenger, site/aplicativo e chamadas de voz</b>. A venda no próprio canal depende das APIs e regras aplicáveis; quando não for possível, o agente deverá transferir com segurança para o checkout oficial. O clube não anunciou essas integrações neste estudo.</div>
+ <div class="wa-stages" aria-label="Etapas propostas da jornada"><div><strong>01</strong>Conversar em qualquer canal habilitado</div><div><strong>02</strong>Entender necessidade e consultar fontes</div><div><strong>03</strong>Confirmar disponibilidade e direitos</div><div><strong>04</strong>Finalizar com segurança ou chamar humano</div></div>
+ <div class="pane" style="margin-bottom:16px">
+  <div class="pane-head"><div><h3>Uma inteligência; várias portas de entrada</h3><div class="sub">Troque de canal para comparar como a mesma jornada assistida pode começar e como precisa terminar.</div></div><span class="mini-tag sim">Canais hipotéticos</span></div>
+  <div class="omni-channels" id="omni-channels" role="group" aria-label="Selecionar canal para a demonstração">
+   <button class="omni-channel active" type="button" data-channel="whatsapp" aria-pressed="true">WhatsApp</button>
+   <button class="omni-channel" type="button" data-channel="instagram" aria-pressed="false">Instagram Direct</button>
+   <button class="omni-channel" type="button" data-channel="messenger" aria-pressed="false">Messenger</button>
+   <button class="omni-channel" type="button" data-channel="site" aria-pressed="false">Site / aplicativo</button>
+   <button class="omni-channel" type="button" data-channel="voz" aria-pressed="false">Ligação de voz</button>
   </div>
-  <div class="buttonrow" style="margin-top:14px"><button id="wa-reset" class="btn secondary" type="button">↺ Reiniciar demonstração</button></div>
-  <p class="smallmuted" style="margin-top:14px"><b>Atenção:</b> partidas, setores e perfis escolhidos são exemplos sem relação com disponibilidade, preços ou descontos atuais. Não informe dados pessoais. Não existe cobrança, autenticação ou emissão de ingresso nesta demonstração.</p>
+  <p id="omni-channel-note" class="smallmuted" style="margin:14px 0 0">Selecione um canal para ver as possibilidades e limitações de integração.</p>
+ </div>
+ <div class="wa-layout">
+  <article class="pane"><div class="pane-head"><div><h3>Experimente a jornada assistida</h3><div class="sub">Simulador guiado: demonstra decisões e passagem para sistemas oficiais. Não usa IA generativa nem envia mensagens.</div></div><span class="mini-tag sim">100% fictício</span></div>
+   <div class="wa-device">
+    <div class="wa-header"><div class="wa-icon">GV</div><div><strong id="omni-agent-name">Agente GNV • WhatsApp (conceito)</strong><small id="omni-agent-sub">Simulação local, não oficial e sem conexão externa</small></div></div>
+    <div id="wa-chat" class="wa-chat" role="log" aria-live="polite" aria-label="Conversa demonstrativa"></div>
+    <div id="wa-options" class="wa-options" aria-label="Opções da simulação"></div>
+   </div>
+   <div class="buttonrow" style="margin-top:14px"><button id="wa-reset" class="btn secondary" type="button">↺ Reiniciar conversa</button></div>
+   <p class="smallmuted" style="margin-top:14px"><b>Segurança:</b> nenhum ingresso, preço, desconto ou disponibilidade é real. Não informe CPF, senha, documentos ou outros dados pessoais. Nenhum pedido, pagamento, mensagem ou ligação é realizado.</p>
+  </article>
+  <article class="pane"><div class="pane-head"><h3>Um agente, não um menu de perguntas</h3><span class="mini-tag sim">Capacidade desejada</span></div>
+   <div class="wa-points">
+    <div class="wa-point"><b>01 · Entender a intenção</b><p>Interpretar perguntas em linguagem natural, preferências e contexto, inclusive por voz. O roteiro à esquerda apenas demonstra possibilidades; não é a IA final.</p></div>
+    <div class="wa-point"><b>02 · Consultar antes de afirmar</b><p>Agente com ferramentas controladas para consultar regras vigentes, GaloID, plano, janela de prioridade e inventário da bilheteria, mediante autenticação autorizada.</p></div>
+    <div class="wa-point"><b>03 · Ajudar a vender por qualquer canal compatível</b><p>WhatsApp, Direct, Messenger, site/app e telefone podem iniciar a conversa. A conclusão usa o ambiente oficial homologado quando o canal não permite checkout nativo.</p></div>
+    <div class="wa-point"><b>04 · Resolver rotinas e escalar exceções</b><p>Suporte a sócios, emissão ou segunda via de cartão quando autorizado, informações sobre jogos e biometria. Casos fora das regras, fraudes, divergências ou solicitações sensíveis são direcionados à equipe humana.</p></div>
+    <div class="wa-point"><b>05 · Aprender com dados</b><p>Registrar eventos de funil, canal de origem, motivo de contato, resolução e transferência. Respeitar LGPD, privacidade, consentimento e regras das plataformas.</p></div>
+   </div>
+   <div class="insight"><b>KPIs de um piloto:</b> intenção de compra → consulta → checkout → ingresso confirmado; taxa de conversão por origem; abandono; resolução autônoma; transferência humana; acessibilidade e satisfação. Aqui não há métricas reais.</div>
+  </article>
+ </div>
+ <article class="pane" style="margin-top:16px"><div class="pane-head"><h3>Camada central de decisão e integração</h3><span class="mini-tag qual">A construir com autorização</span></div>
+  <div class="steps"><div class="step"><small>01 · ENTRADAS</small><b>WhatsApp + Instagram + voz + web</b><p>Conectores oficiais e políticas de cada plataforma; preservação do contexto autorizado entre canais.</p></div>
+   <div class="step"><small>02 · AGENTE DE IA</small><b>Raciocínio + ferramentas + segurança</b><p>Responder usando base de conhecimento aprovada e chamar APIs transacionais sob validação.</p></div>
+   <div class="step"><small>03 · SISTEMAS</small><b>GaloID + GNV + bilheteria</b><p>Inventário em tempo real, regras de plano e jogo, pagamentos e emissão pela infraestrutura oficial.</p></div>
+   <div class="step"><small>04 · SUPERVISÃO</small><b>CRM + agente humano</b><p>Auditoria, controle de exceções, transferências com contexto e aprendizado a partir dos casos.</p></div></div>
+  <p class="smallmuted" style="margin-top:14px"><b>Limites importantes:</b> no Instagram Direct, a API de mensagens exige conta profissional e que a conversa seja iniciada pelo usuário; isso não equivale a uma API de venda de ingressos dentro do Direct. O WhatsApp oferece Flows, mas pagamento nativo no Brasil ou integração com bilheteria não estão confirmados neste estudo. O regulamento do GNV não garante descontos para vendas fora da plataforma oficial. A biometria facial e o meio autorizado de acesso à Arena continuam válidos.</p>
  </article>
- <article class="pane"><div class="pane-head"><h3>Onde está o valor para o CRM?</h3><span class="mini-tag sim">Hipótese</span></div>
-  <div class="wa-points">
-   <div class="wa-point"><b>01 · Menos fricção</b><p>Permitir que quem já utiliza WhatsApp inicie e, se tecnicamente viável, conclua a compra sem trocar de aplicativo. O impacto real precisaria ser medido.</p></div>
-   <div class="wa-point"><b>02 · Atendimento com contexto</b><p>Com autorização, consultar GaloID, elegibilidade de benefícios e bilheteria. A conversa não deve presumir plano ou disponibilidade.</p></div>
-   <div class="wa-point"><b>03 · Inclusão e atendimento humano</b><p>Linguagem direta, opções acessíveis e transbordo para atendente quando necessário. Hipótese útil para torcedores com diferentes níveis de familiaridade digital.</p></div>
-   <div class="wa-point"><b>04 · Aprender com o funil</b><p>Eventos de intenção, escolha, autenticação, checkout e conclusão permitem medir abandono, tempo até compra e necessidade de ajuda, sujeitos a LGPD e governança.</p></div>
-  </div>
-  <div class="insight"><b>KPIs a validar:</b> conversão por canal, abandono em cada etapa, tempo de compra, percentual de resolução sem transbordo, satisfação e taxa de segunda compra. Nenhum indicador real está disponível neste protótipo.</div>
- </article>
-</div>
-<article class="pane" style="margin-top:16px"><div class="pane-head"><h3>Arquitetura mínima — integração futura</h3><span class="mini-tag qual">Não implementada</span></div>
- <div class="steps"><div class="step"><small>01 · AUTENTICAÇÃO</small><b>GaloID</b><p>Vinculação segura do torcedor e verificação de regras, sem pedir senhas no chat.</p></div>
- <div class="step"><small>02 · INVENTÁRIO</small><b>Bilheteria oficial</b><p>Partidas, setores, limites, prioridades e disponibilidade em tempo real.</p></div>
- <div class="step"><small>03 · CHECKOUT</small><b>Pagamento homologado</b><p>Fluxo transacional conforme APIs e regras dos fornecedores envolvidos.</p></div>
- <div class="step"><small>04 · ANALYTICS</small><b>Eventos de CRM</b><p>Funil de conversão, consentimento, teste A/B e feedback de experiência.</p></div></div>
- <p class="smallmuted" style="margin-top:13px">A compra integral dentro do WhatsApp não está garantida: depende das capacidades contratadas, regras da plataforma, segurança, biometria aplicável e infraestrutura da bilheteria. Aqui só demonstramos a experiência desejada.</p>
-</article>
 </section>
 
 <section id="crm" class="section">
@@ -187,7 +205,7 @@
 <section id="sources" class="section">
  <div class="section-title"><div><h2>Fontes e metodologia</h2><p>Rastreabilidade dos números e limites do estudo.</p></div><span class="mini-tag">Auditável</span></div>
  <div class="warn">Estudo independente, sem vínculo oficial, licença comercial ou endosso do Galo. O escudo é reproduzido a partir de arquivo disponibilizado na biblioteca de marcas do clube, exclusivamente para contextualização deste estudo. Marcas e direitos pertencem a seus titulares. Não há acesso às bases internas nem dados pessoais de torcedores.</div>
- <div class="grid2"><article class="pane"><h3>Fontes públicas utilizadas</h3><div class="source-row"><div><a href="https://atletico.com.br/galo-na-veia-alcanca-marca-historica-de-200-mil-socios/" target="_blank" rel="noopener noreferrer">Marco de 200 mil associados ↗</a><p>Anúncio em 11/08/2026.</p></div><span>11 AGO</span></div><div class="source-row"><div><a href="https://atletico.com.br/galo-na-veia-chega-a-235-mil-socios/" target="_blank" rel="noopener noreferrer">GNV ultrapassa 235 mil ↗</a><p>Anúncio em 30/08/2026; mínimo divulgado.</p></div><span>30 AGO</span></div><div class="source-row"><div><a href="https://atletico.com.br/galo-na-veia-alcanca-marca-historica-de-300-mil-socios/" target="_blank" rel="noopener noreferrer">Marco de 300 mil associados ↗</a><p>Anúncio em 15/10/2026.</p></div><span>15 OUT</span></div><div class="source-row"><div><a href="https://atletico.com.br/galo-utiliza-dados-para-entender-comportamento-do-torcedor/" target="_blank" rel="noopener noreferrer">GaloLake e dados na Arena ↗</a><p>550+ tabelas, ~1,8 bilhão de registros e 11.257 estreias em partida de setembro.</p></div><span>21 SET</span></div><div class="source-row"><div><a href="https://atletico.com.br/chegou-o-gnv-da-massa/" target="_blank" rel="noopener noreferrer">Lançamento do plano gratuito ↗</a><p>GNV da Massa é gratuito, divulgado em 10/06/2024.</p></div><span>10 JUN 24</span></div><div class="source-row"><div><a href="https://atletico.com.br/promocao-na-arena-mrv-impulsiona-o-gnv-da-massa/" target="_blank" rel="noopener noreferrer">Promoção e primeira visita ↗</a><p>Exemplo público de 839 estreantes entre integrantes do GNV da Massa numa partida.</p></div><span>10 OUT 25</span></div><div class="source-row"><div><a href="https://galonaveia.atletico.com.br/faq" target="_blank" rel="noopener noreferrer">Regulamento geral, planos, FAQ e GNV Vantagens ↗</a><p>Fonte primária para hierarquia, direitos e deveres; confrontar com regras do jogo.</p></div><span>REGULAMENTOS</span></div><div class="source-row"><div><a href="https://atletico.com.br/institucional/identidade/simbolos-e-marcas/" target="_blank" rel="noopener noreferrer">Biblioteca oficial do escudo e marcas ↗</a><p>Arte de referência fornecida pelo clube; utilização ilustrativa em estudo independente.</p></div><span>MARCA</span></div><div class="source-row"><div><a href="https://www.atletico.com.br/wp-content/uploads/2014/07/Manual-Galo.pdf" target="_blank" rel="noopener noreferrer">Manual de identidade visual do Galo ↗</a><p>Proporções, estrela amarela e proibições de alterações no escudo.</p></div><span>MANUAL</span></div><div class="source-row"><div><a href="https://galonaveia.atletico.com.br/" target="_blank" rel="noopener noreferrer">Modalidades oficiais do GNV ↗</a><p>Benefícios e planos; valores mudam conforme data e condições.</p></div><span>CONSULTA</span></div></article><article class="pane"><h3>Dicionário da demonstração</h3><div class="statlist" style="margin-top:18px"><div class="statline"><span>BASE OFICIAL</span><b>Publicações do clube</b></div><div class="statline"><span>BASE CRM</span><b>2.400 registros fabricados</b></div><div class="statline"><span>PLANO / SEGMENTO</span><b>Regras sintéticas</b></div><div class="statline"><span>FUNIL DE INGRESSO</span><b>10.000 sessões fictícias</b></div><div class="statline"><span>ATRITO / ABANDONO</span><b>Hipótese não testada</b></div><div class="statline"><span>CAMPANHA / RECEITA</span><b>Premissas editáveis</b></div><div class="statline"><span>FONTE PRIMÁRIA</span><b>Link na documentação</b></div></div><div class="insight"><b>Uso correto:</b> apresentar como prova de raciocínio técnico, capacidade de modelagem, governança, testes e visão de negócio. Nunca como painel real de performance do GNV.</div></article></div>
+ <div class="grid2"><article class="pane"><h3>Fontes públicas utilizadas</h3><div class="source-row"><div><a href="https://atletico.com.br/galo-na-veia-alcanca-marca-historica-de-200-mil-socios/" target="_blank" rel="noopener noreferrer">Marco de 200 mil associados ↗</a><p>Anúncio em 11/08/2026.</p></div><span>11 AGO</span></div><div class="source-row"><div><a href="https://atletico.com.br/galo-na-veia-chega-a-235-mil-socios/" target="_blank" rel="noopener noreferrer">GNV ultrapassa 235 mil ↗</a><p>Anúncio em 30/08/2026; mínimo divulgado.</p></div><span>30 AGO</span></div><div class="source-row"><div><a href="https://atletico.com.br/galo-na-veia-alcanca-marca-historica-de-300-mil-socios/" target="_blank" rel="noopener noreferrer">Marco de 300 mil associados ↗</a><p>Anúncio em 15/10/2026.</p></div><span>15 OUT</span></div><div class="source-row"><div><a href="https://atletico.com.br/galo-utiliza-dados-para-entender-comportamento-do-torcedor/" target="_blank" rel="noopener noreferrer">GaloLake e dados na Arena ↗</a><p>550+ tabelas, ~1,8 bilhão de registros e 11.257 estreias em partida de setembro.</p></div><span>21 SET</span></div><div class="source-row"><div><a href="https://atletico.com.br/chegou-o-gnv-da-massa/" target="_blank" rel="noopener noreferrer">Lançamento do plano gratuito ↗</a><p>GNV da Massa é gratuito, divulgado em 10/06/2024.</p></div><span>10 JUN 24</span></div><div class="source-row"><div><a href="https://atletico.com.br/promocao-na-arena-mrv-impulsiona-o-gnv-da-massa/" target="_blank" rel="noopener noreferrer">Promoção e primeira visita ↗</a><p>Exemplo público de 839 estreantes entre integrantes do GNV da Massa numa partida.</p></div><span>10 OUT 25</span></div><div class="source-row"><div><a href="https://atletico.com.br/atendimento-galo-na-veia/" target="_blank" rel="noopener noreferrer">Canais oficiais de atendimento GNV ↗</a><p>Confirma WhatsApp, telefone e atendimento presencial, além de contatos especializados.</p></div><span>CANAIS</span></div><div class="source-row"><div><a href="https://whatsappbusiness.com/pt-br/products/whatsapp-flows/" target="_blank" rel="noopener noreferrer">WhatsApp Flows · Meta ↗</a><p>Interfaces de formulários e jornadas dentro de conversas; não comprova integração com bilheteria.</p></div><span>API META</span></div><div class="source-row"><div><a href="https://www.postman.com/meta/instagram/documentation/6yqw8pt/instagram-api?entity=request-23987686-e2cfad80-45dd-4111-9ac4-9ae96b9d7ed0" target="_blank" rel="noopener noreferrer">Documentação Instagram Messaging · Meta ↗</a><p>Conversas com contas profissionais, iniciadas pelo usuário, sob permissões específicas.</p></div><span>API META</span></div><div class="source-row"><div><a href="https://atletico.com.br/central-galo-na-veia-presta-auxilio-na-biometria-facial/" target="_blank" rel="noopener noreferrer">Atendimento e biometria facial · Atlético ↗</a><p>Confirma necessidade de biometria e atendimento de suporte.</p></div><span>REGRAS</span></div><div class="source-row"><div><a href="https://atletico.com.br/galo-adota-nova-tecnologia-para-acesso-na-arena-mrv/" target="_blank" rel="noopener noreferrer">Ingresso digital e segurança · Atlético ↗</a><p>Regras do acesso oficial; não prometer entrega de QR code comum em mensagens.</p></div><span>INGRESSOS</span></div><div class="source-row"><div><a href="https://galonaveia.atletico.com.br/faq" target="_blank" rel="noopener noreferrer">Regulamento geral, planos, FAQ e GNV Vantagens ↗</a><p>Fonte primária para hierarquia, direitos e deveres; confrontar com regras do jogo.</p></div><span>REGULAMENTOS</span></div><div class="source-row"><div><a href="https://atletico.com.br/institucional/identidade/simbolos-e-marcas/" target="_blank" rel="noopener noreferrer">Biblioteca oficial do escudo e marcas ↗</a><p>Arte de referência fornecida pelo clube; utilização ilustrativa em estudo independente.</p></div><span>MARCA</span></div><div class="source-row"><div><a href="https://www.atletico.com.br/wp-content/uploads/2014/07/Manual-Galo.pdf" target="_blank" rel="noopener noreferrer">Manual de identidade visual do Galo ↗</a><p>Proporções, estrela amarela e proibições de alterações no escudo.</p></div><span>MANUAL</span></div><div class="source-row"><div><a href="https://galonaveia.atletico.com.br/" target="_blank" rel="noopener noreferrer">Modalidades oficiais do GNV ↗</a><p>Benefícios e planos; valores mudam conforme data e condições.</p></div><span>CONSULTA</span></div></article><article class="pane"><h3>Dicionário da demonstração</h3><div class="statlist" style="margin-top:18px"><div class="statline"><span>BASE OFICIAL</span><b>Publicações do clube</b></div><div class="statline"><span>BASE CRM</span><b>2.400 registros fabricados</b></div><div class="statline"><span>PLANO / SEGMENTO</span><b>Regras sintéticas</b></div><div class="statline"><span>FUNIL DE INGRESSO</span><b>10.000 sessões fictícias</b></div><div class="statline"><span>ATRITO / ABANDONO</span><b>Hipótese não testada</b></div><div class="statline"><span>CAMPANHA / RECEITA</span><b>Premissas editáveis</b></div><div class="statline"><span>FONTE PRIMÁRIA</span><b>Link na documentação</b></div></div><div class="insight"><b>Uso correto:</b> apresentar como prova de raciocínio técnico, capacidade de modelagem, governança, testes e visão de negócio. Nunca como painel real de performance do GNV.</div></article></div>
 </section>
 <footer class="footnote"><span>GNV INTELLIGENCE LAB · Demonstração de Gustavo Santos · Out/2026</span><span>Não oficial · Escudo original de referência · Dados sintéticos · Não envia mensagens</span></footer>
 </main></div>
@@ -226,56 +244,88 @@ document.getElementById('res-eligible').textContent=fmt(eligible);document.getEl
 document.getElementById('campaign-explainer').innerHTML=`<b>${seg} · ${document.getElementById('camp-channel').value}:</b> o cenário supõe ${base}% de conversão sem tratamento e ${base+uplift}% com tratamento. Diferença projetada de <b>${String(uplift).replace('.',',')} ponto(s) percentual(is)</b>. Não é uplift observado nem comprova resultado causal.`;
 document.getElementById('journey-steps').innerHTML=`<div class="timeline"><div class="timeline-item"><time>GATILHO</time><div><h4>${seg}</h4><p>Identificação pela regra de segmentação sobre eventos simulados.</p></div></div><div class="timeline-item"><time>GUARDA</time><div><h4>Consentimento e elegibilidade</h4><p>${fmt(eligible)} registros fictícios com opt-in; revisar privacidade e preferência de canal.</p></div></div><div class="timeline-item"><time>EXPOR</time><div><h4>${document.getElementById('camp-channel').value}</h4><p>Simular tratamento vs controle; não há envio real.</p></div></div><div class="timeline-item"><time>MEDIR</time><div><h4>Conversão incremental</h4><p>Verificar resultado com experimento real e condições controladas, se autorizado.</p></div></div></div>`;
 }document.getElementById('camp-segment').addEventListener('change',renderCampaign);document.getElementById('camp-channel').addEventListener('change',renderCampaign);document.getElementById('simulate').addEventListener('click',renderCampaign);document.getElementById('reset-campaign').addEventListener('click',()=>{['base-rate','uplift-rate','value-rate','cost-rate'].forEach((k,i)=>document.getElementById(k).value=[4,2,150,80][i]);document.getElementById('camp-segment').value='Risco de inatividade';document.getElementById('camp-channel').selectedIndex=0;renderCampaign();});
-/* Protótipo determinístico, não integra WhatsApp ou vendas reais */
-const waState={step:'start',match:null,sector:null,plan:null};
-const waChat=document.getElementById('wa-chat'),waOptions=document.getElementById('wa-options');
-function waBubble(kind,message){
-  const b=document.createElement('div');b.className='wa-bubble '+kind;b.textContent=message;
-  waChat.appendChild(b);waChat.scrollTop=waChat.scrollHeight;
+
+/* Jornada ilustrativa, sem IA real, APIs, WhatsApp, Instagram ou chamadas externas. */
+const omniChannels={
+ whatsapp:{label:'WhatsApp',intro:'O WhatsApp pode combinar conversa e interfaces Flows, com integração autorizada.',checkout:'No WhatsApp, o checkout pode usar um fluxo homologado, se disponível; caso contrário, um link seguro da bilheteria oficial. Nada é vendido aqui.'},
+ instagram:{label:'Instagram Direct',intro:'O torcedor inicia uma conversa com a conta profissional do clube. O agente poderá entender intenção e consultar informações autorizadas; o Direct não equivale a uma bilheteria.',checkout:'Pelo Instagram Direct, o agente encaminharia ao checkout oficial autenticado. Não presumimos pagamento ou emissão nativos no Direct.'},
+ messenger:{label:'Messenger',intro:'A conversa pode começar em uma página oficial conectada a um canal empresarial autorizado.',checkout:'A conclusão utiliza a bilheteria oficial, com autenticação e pagamento homologados, e devolutiva de status conforme a política do canal.'},
+ site:{label:'Site / aplicativo',intro:'O canal próprio oferece acesso controlado ao fluxo oficial de bilheteria, GaloID e benefícios do programa.',checkout:'No canal próprio, o agente pode orientar a compra pelo checkout oficial integrado quando houver APIs e autorização.'},
+ voz:{label:'Ligação de voz',intro:'Um agente de voz conversacional poderá responder dúvidas, orientar escolhas e registrar pedido de ajuda. Nenhum telefonema é feito nesta simulação.',checkout:'Na ligação, nunca solicitar dados completos de cartão ou senhas. Encaminhar ao checkout oficial seguro ou atendimento humano autorizado.'}
+};
+const waState={step:'start',channel:'whatsapp',match:null,sector:null,plan:null};
+const waChat=document.getElementById('wa-chat');
+const waOptions=document.getElementById('wa-options');
+function waBubble(kind,msg){
+ const d=document.createElement('div');d.className='wa-bubble '+kind;d.textContent=msg;
+ waChat.appendChild(d);waChat.scrollTop=waChat.scrollHeight;
 }
 function waButtons(items){
-  waOptions.replaceChildren();
-  for(const item of items){
-    const b=document.createElement('button');b.type='button';b.textContent=item[1];
-    b.addEventListener('click',()=>waChoice(item[0],item[1]));waOptions.appendChild(b);
-  }
+ waOptions.replaceChildren();
+ for(const [key,label] of items){
+  const b=document.createElement('button');b.type='button';b.textContent=label;
+  b.addEventListener('click',()=>waChoice(key,label));waOptions.appendChild(b);
+ }
+}
+function omniSelect(channel){
+ if(!omniChannels[channel])return;
+ waState.channel=channel;const info=omniChannels[channel];
+ document.getElementById('omni-agent-name').textContent='Agente GNV • '+info.label+' (conceito)';
+ document.getElementById('omni-agent-sub').textContent='Simulação não oficial · nenhum contato real';
+ document.getElementById('omni-channel-note').textContent=info.intro;
+ document.querySelectorAll('[data-channel]').forEach(b=>{
+  const active=b.dataset.channel===channel;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));
+ });
+ waStart();
 }
 function waStart(){
  waState.step='start';waState.match=null;waState.sector=null;waState.plan=null;waChat.replaceChildren();
- waBubble('bot','Olá! Este é um simulador de agente de atendimento por WhatsApp. Em um projeto autorizado, eu poderia ajudar na compra do ingresso aqui mesmo. O que deseja fazer?');
- waButtons([['buy','Comprar ingresso'],['help','Entender a proposta']]);
+ waBubble('bot','Olá! Este é um protótipo de uma central inteligente no canal '+omniChannels[waState.channel].label+'. Que tipo de ajuda você gostaria?');
+ waButtons([['buy','Quero comprar ingresso'],['benefits','Dúvida sobre benefícios'],['biometry','Ajuda com biometria'],['handoff','Falar com responsável']]);
 }
 function waChoice(key,label){
  waBubble('me',label);
- if(key==='help'){
-   waBubble('bot','A proposta é sair do simples FAQ para uma jornada transacional: consultar partida, setor e benefícios, autenticar com segurança, pagar e receber a confirmação. Tudo depende de integrações e autorização. Aqui não acontece compra real.');
-   waButtons([['buy','Testar compra simulada'],['reset','Recomeçar']]);
- }else if(key==='buy'){
-   waState.step='match';waBubble('bot','Ótimo. Escolha uma partida fictícia para começar. Não são jogos nem ingressos disponíveis.');
-   waButtons([['a','Partida demonstrativa A'],['b','Partida demonstrativa B']]);
+ if(key==='buy'){
+  waState.step='match';waBubble('bot','Posso ajudar a escolher. Selecione uma partida fictícia; um agente real consultaria a bilheteria oficial.');
+  waButtons([['a','Partida demonstrativa A'],['b','Partida demonstrativa B']]);
  }else if(key==='a'||key==='b'){
-   waState.match='Partida demonstrativa '+key.toUpperCase();waState.step='sector';
-   waBubble('bot','Qual setor prefere? Estes setores são exemplos apenas.');
-   waButtons([['east','Setor Leste (exemplo)'],['west','Setor Oeste (exemplo)'],['accessible','Necessito de acessibilidade']]);
+  if(waState.step!=='match'){waStart();return;}
+  waState.match='Partida demonstrativa '+key.toUpperCase();waState.step='sector';
+  waBubble('bot','Qual setor prefere? Estas opções não representam lugares disponíveis.');
+  waButtons([['east','Setor Leste (exemplo)'],['west','Setor Oeste (exemplo)'],['accessible','Necessito de acessibilidade']]);
  }else if(['east','west','accessible'].includes(key)){
-   waState.sector=key==='east'?'Leste (exemplo)':key==='west'?'Oeste (exemplo)':'Acessibilidade (a verificar)';
-   waState.step='plan';
-   waBubble('bot',key==='accessible'?'Uma solução real verificaria os assentos acessíveis na bilheteria e disponibilizaria atendimento humano. Você possui GNV?':'Entendi. Agora precisamos consultar seus benefícios, após autenticação segura. Qual seu perfil GNV?');
-   waButtons([['free','GNV da Massa'],['paid','Outro plano GNV'],['none','Não sou sócio']]);
+  if(waState.step!=='sector'){waStart();return;}
+  waState.sector=key==='east'?'Leste (exemplo)':key==='west'?'Oeste (exemplo)':'Acessibilidade — validar';
+  waState.step='plan';
+  waBubble('bot','Entendi. Qual modalidade GNV você informa ter? Em produção isso seria confirmado pelo GaloID, sem pedir sua senha na conversa.');
+  waButtons([['free','GNV da Massa'],['paid','Outro plano GNV'],['none','Não sou sócio']]);
  }else if(['free','paid','none'].includes(key)){
-   waState.plan=key==='free'?'GNV da Massa':key==='paid'?'Outro plano GNV':'Não sócio';
-   waState.step='review';
-   waBubble('bot','RESUMO DA SIMULAÇÃO:\nPartida: '+waState.match+'\nSetor: '+waState.sector+'\nPerfil declarado: '+waState.plan+'\n\nEm produção, eu verificaria identidade, descontos, disponibilidade e valor atualizado. Nenhuma dessas consultas ocorreu aqui.');
-   waButtons([['finish','Simular compra no WhatsApp'],['buy','Alterar escolhas']]);
- }else if(key==='finish'&&waState.step==='review'){
-   waState.step='finished';
-   waBubble('bot','✓ DEMONSTRAÇÃO CONCLUÍDA.\n\nA ideia é que um sistema integrado finalize a compra com pagamento autorizado e confirmação oficial no mesmo canal.\n\nNESTA SIMULAÇÃO: nenhum pagamento, reserva, emissão de ingresso ou envio de mensagem foi realizado.');
-   waButtons([['reset','Outra demonstração']]);
- }else{
-   waStart();
- }
+  if(waState.step!=='plan'){waStart();return;}
+  waState.plan=key==='free'?'GNV da Massa':key==='paid'?'Outro plano GNV':'Não sócio';
+  waState.step='review';
+  waBubble('bot','CENÁRIO DE ESTUDO:\nPartida: '+waState.match+'\nSetor: '+waState.sector+'\nPerfil informado: '+waState.plan+'\n\nAntes de vender, seria obrigatório verificar regras do jogo, disponibilidade, benefícios e autenticação. Nenhum dado foi consultado aqui.');
+  waButtons([['finish','Simular próxima etapa'],['buy','Alterar partida'],['handoff','Falar com responsável']]);
+ }else if(key==='finish'){
+  if(waState.step!=='review'){waStart();return;}
+  waState.step='finished';
+  waBubble('bot','✓ FLUXO DEMONSTRATIVO CONCLUÍDO.\n\n'+omniChannels[waState.channel].checkout+'\n\nNão houve reserva, emissão, pagamento, autenticação ou contato real.');
+  waButtons([['reset','Iniciar outra jornada']]);
+ }else if(key==='benefits'){
+  waState.step='other';waBubble('bot','As prioridades, descontos, quantidades e formas de resgate variam conforme plano e jogo. Uma IA real consultaria o regulamento vigente e seu cadastro após autenticação. Não posso afirmar benefício específico sem esses dados.');
+  waButtons([['buy','Ir para compra simulada'],['handoff','Solicitar orientação humana'],['reset','Voltar ao início']]);
+ }else if(key==='biometry'){
+  waState.step='other';waBubble('bot','O ingresso e o acesso à Arena exigem seguir o procedimento oficial de biometria facial quando aplicável. Um agente real explicaria as etapas oficiais, sem coletar foto facial ou documento pelo chat. Se houver falha de cadastro, transferiria à equipe.');
+  waButtons([['handoff','Encaminhar caso'],['reset','Voltar ao início']]);
+ }else if(key==='handoff'){
+  waState.step='human';
+  waBubble('bot','TRANSFERÊNCIA ILUSTRATIVA: um atendente humano receberia, com autorização e privacidade, o resumo da solicitação e assumiria somente os casos fora da autonomia do agente. Nenhum atendimento foi aberto.');
+  waButtons([['reset','Recomeçar']]);
+ }else if(key==='reset'){waStart();}
+ else{waStart();}
 }
-document.getElementById('wa-reset').addEventListener('click',waStart);waStart();
+document.querySelectorAll('[data-channel]').forEach(b=>b.addEventListener('click',()=>omniSelect(b.dataset.channel)));
+document.getElementById('wa-reset').addEventListener('click',waStart);
+omniSelect('whatsapp');
 renderFunnel();renderFriction();fillOptions();renderSegments();renderTable();renderCampaign();
 </script>
 </body></html>
