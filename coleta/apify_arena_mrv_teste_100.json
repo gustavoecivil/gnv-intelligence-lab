@@ -1,0 +1,10 @@
+{
+  "places": [
+    "https://www.google.com/maps/place/Arena+MRV/@-19.9297158,-44.0148066,740m/data=!3m1!1e3!4m8!3m7!1s0xa697401e4ccac9:0x74bdb9ad5e521b8d!8m2!3d-19.9297158!4d-44.0148066!9m1!1b1!16s%2Fg%2F11fl0gz5bn"
+  ],
+  "maxReviewsPerPlace": 100,
+  "maxItems": 100,
+  "sort": "newest",
+  "language": "pt",
+  "includePlaceInfo": true
+}
